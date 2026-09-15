@@ -6,7 +6,7 @@ package console
 import (
 	"embed"
 
-	"github.com/abakum/embed-encrypt/encryptedfs"
+	"github.com/lwgojustgo/embed-encrypt/encryptedfs"
 )
 
 // go:embed winpty/386/*
