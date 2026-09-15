@@ -3,7 +3,7 @@ module github.com/abakum/go-console
 go 1.21
 
 require (
-	github.com/abakum/embed-encrypt v0.0.1
+	github.com/lwgojustgo/embed-encrypt v0.0.1
 	github.com/abakum/term v0.0.1
 	github.com/creack/pty v1.1.21
 	github.com/iamacarpet/go-winpty v1.0.4
