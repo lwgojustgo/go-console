@@ -8,7 +8,6 @@ require (
 	github.com/containerd/console v1.0.4
 	github.com/creack/pty v1.1.21
 	github.com/iamacarpet/go-winpty v1.0.4
-	github.com/lwgojustgo/embed-encrypt v0.0.2
 	github.com/mattn/go-isatty v0.0.20
 	github.com/stretchr/testify v1.7.0
 	github.com/xlab/closer v1.1.0

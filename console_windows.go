@@ -4,22 +4,17 @@
 package console
 
 import (
-	_ "embed"
+	"bytes"
 	"fmt"
-	"io/fs"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"syscall"
-	"time"
 
 	"github.com/lwgojustgo/go-console/interfaces"
 	"github.com/iamacarpet/go-winpty"
 )
-
-//go:embed key.enc
-var key []byte
 
 // Do the interface allocations only once for common
 // Errno values.
@@ -112,25 +107,22 @@ func (c *consoleWindows) UnloadEmbeddedDeps() (string, error) {
 		filenameEmbedded := fmt.Sprintf("winpty/%s/%s", runtime.GOARCH, file)
 		filenameDisk := filepath.Join(dllDir, file)
 
-		eInfo, _ := fs.Stat(winpty_deps, filenameEmbedded)
-		fInfo, statErr := os.Stat(filenameDisk)
-		if statErr == nil {
-			// file is already there
-			if fInfo.ModTime().Unix() >= eInfo.ModTime().Unix() {
-				// file is newer than embed
-				continue
-			}
-		}
-
 		data, err := winpty_deps.ReadFile(filenameEmbedded)
 		if err != nil {
 			return "", err
 		}
 
+		// 标准 embed.FS 不保留文件修改时间，原 mtime 比较不可用；
+		// 改为磁盘内容与嵌入内容一致即跳过，内容不同（或不存在）时重写。
+		// 语义等价且更可靠：不受系统时钟影响，winpty 升级后确定性刷新。
+		if diskData, err := os.ReadFile(filenameDisk); err == nil && bytes.Equal(diskData, data) {
+			// file is already there and identical to the embedded one
+			continue
+		}
+
 		if err := os.WriteFile(filenameDisk, data, 0644); err != nil {
 			return "", err
 		}
-		os.Chtimes(filenameDisk, time.Now().Local(), eInfo.ModTime())
 	}
 
 	return dllDir, nil
