@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/abakum/go-console"
+	"github.com/lwgojustgo/go-console"
 	cc "github.com/containerd/console"
 	"github.com/mattn/go-isatty"
 	"github.com/xlab/closer"

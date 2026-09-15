@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/abakum/go-console/interfaces"
+	"github.com/lwgojustgo/go-console/interfaces"
 	"github.com/iamacarpet/go-winpty"
 )
 

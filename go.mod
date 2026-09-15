@@ -1,4 +1,4 @@
-module github.com/abakum/go-console
+module github.com/lwgojustgo/go-console
 
 go 1.21
 

@@ -25,7 +25,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/abakum/go-console"
+	"github.com/lwgojustgo/go-console"
 )
 
 func main() {

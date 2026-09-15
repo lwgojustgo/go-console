@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/abakum/go-console"
+	"github.com/lwgojustgo/go-console"
 	"github.com/abakum/term"
 )
 

@@ -1,7 +1,7 @@
 package console
 
 import (
-	"github.com/abakum/go-console/interfaces"
+	"github.com/lwgojustgo/go-console/interfaces"
 )
 
 // Console communication interface
